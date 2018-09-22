@@ -1067,3 +1067,31 @@ ActionController::RoutingError (uninitialized constant PostController):
   Rendered /usr/local/rvm/gems/ruby-2.3.1/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_table.html.erb (2.1ms)
   Rendered /usr/local/rvm/gems/ruby-2.3.1/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.1ms)
   Rendered /usr/local/rvm/gems/ruby-2.3.1/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (164.2ms)
+
+
+Started GET "/posts/1/edit" for 76.27.25.181 at 2018-09-22 23:29:33 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by PostsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mPost Load (0.3ms)[0m  SELECT  "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered posts/edit.html.erb within layouts/application (41.1ms)
+Completed 200 OK in 469ms (Views: 423.1ms | ActiveRecord: 0.8ms)
+
+
+Started PATCH "/posts/1" for 76.27.25.181 at 2018-09-22 23:29:42 +0000
+Processing by PostsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"sS9EUOmtrvpTXOc7lJXrVMA2jBAEa8aSqg/BdeaVpLScxH98gCxw7nhs/DLwRoIXwKdRlAygDq2/XhgHJQNROQ==", "post"=>{"title"=>"Jims", "description"=>"changes"}, "commit"=>"Update Post", "id"=>"1"}
+  [1m[36mPost Load (0.2ms)[0m  [1mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (1.5ms)[0m  [1mUPDATE "posts" SET "title" = ?, "description" = ?, "updated_at" = ? WHERE "posts"."id" = ?[0m  [["title", "Jims"], ["description", "changes"], ["updated_at", "2018-09-22 23:29:42.490890"], ["id", 1]]
+  [1m[35m (5.1ms)[0m  commit transaction
+Redirected to http://165.227.16.205:37411/posts/1
+Completed 302 Found in 17ms (ActiveRecord: 6.9ms)
+
+
+Started GET "/posts/1" for 76.27.25.181 at 2018-09-22 23:29:42 +0000
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPost Load (0.2ms)[0m  [1mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered posts/show.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 21ms (Views: 19.3ms | ActiveRecord: 0.2ms)
